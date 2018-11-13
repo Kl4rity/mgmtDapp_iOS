@@ -8,13 +8,38 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITextFieldDelegate {
 
+    
+    @IBOutlet weak var input: UITextField!
+    
+    @IBAction func addItem(_ sender: Any) {
+       
+        //check input field
+        if (input.text != ""){
+            listGrpName.append(input.text!)
+            input.text = ""
+            
+            input.resignFirstResponder()
+            print(listGrpName)
+        }else{
+            print("empty")
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        input.delegate = self
+
     }
 
+    
+   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        input.resignFirstResponder()
+        return true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
